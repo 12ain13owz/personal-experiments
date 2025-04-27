@@ -1,0 +1,14 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ label() }}</mat-label>
+  <input matInput [matDatepicker]="picker" [formControl]="control()" />
+  <mat-hint align="end">DD/MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker [startView]="startView()"></mat-datepicker>
+
+  <mat-error>
+    <app-error-field
+      [control]="control()"
+      [errorMessage]="errorMessage()"
+    ></app-error-field>
+  </mat-error>
+</mat-form-field>

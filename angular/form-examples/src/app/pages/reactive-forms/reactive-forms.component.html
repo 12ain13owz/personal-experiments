@@ -1,0 +1,176 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-2 gap-4">
+    <app-form-input
+      [type]="'email'"
+      [label]="'Email'"
+      [control]="control('email')"
+      [errorMessage]="validationMessages.email"
+    >
+    </app-form-input>
+
+    <app-form-input
+      [type]="'tel'"
+      [label]="'Phone'"
+      [control]="control('phone')"
+      [maxLenght]="'10'"
+      [hint]="'10'"
+      [errorMessage]="validationMessages.phone"
+    >
+    </app-form-input>
+  </div>
+
+  <app-form-input
+    [type]="'password'"
+    [label]="'Password'"
+    [control]="control('password')"
+    [errorMessage]="validationMessages.password"
+  >
+  </app-form-input>
+
+  <div class="grid grid-cols-2 gap-4">
+    <app-form-input
+      [type]="'text'"
+      [label]="'First Name'"
+      [control]="control('fullName').controls.firstName"
+      [errorMessage]="validationMessages.firstName"
+    >
+    </app-form-input>
+
+    <app-form-input
+      [type]="'text'"
+      [label]="'Last Name'"
+      [control]="control('fullName').controls.lastName"
+      [errorMessage]="validationMessages.lastName"
+    >
+    </app-form-input>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <app-form-date
+      [label]="'Birth Date'"
+      [startView]="'multi-year'"
+      [control]="control('birthDate')"
+      [errorMessage]="validationMessages.birthDate"
+    >
+    </app-form-date>
+
+    <app-form-radio
+      [label]="'Gender'"
+      [options]="genderOptions"
+      [control]="control('gender')"
+      [errorMessage]="validationMessages.gender"
+    >
+    </app-form-radio>
+  </div>
+
+  <app-form-input
+    [type]="'text'"
+    [label]="'Address Line 1'"
+    [control]="control('address').controls.addressLine1"
+    [errorMessage]="validationMessages.addressLine1"
+  >
+  </app-form-input>
+
+  <app-form-textarea
+    [label]="'Address Line 2'"
+    [placeholder]="'Enter your address'"
+    [rows]="'3'"
+    [control]="control('address').controls.addressLine2"
+  >
+  </app-form-textarea>
+
+  <app-form-autocomplete
+    [label]="'Area'"
+    [options]="areas"
+    [control]="areaControl"
+  >
+  </app-form-autocomplete>
+
+  <div class="grid grid-cols-2 gap-4">
+    <app-form-input
+      [type]="'text'"
+      [label]="'Sub District'"
+      [readonly]="true"
+      [control]="control('address').controls.subDistrict"
+      [errorMessage]="validationMessages.subDistrict"
+    >
+    </app-form-input>
+
+    <app-form-input
+      [type]="'text'"
+      [label]="'District'"
+      [readonly]="true"
+      [control]="control('address').controls.district"
+      [errorMessage]="validationMessages.district"
+    >
+    </app-form-input>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <app-form-input
+      [type]="'text'"
+      [label]="'Province'"
+      [readonly]="true"
+      [control]="control('address').controls.province"
+      [errorMessage]="validationMessages.province"
+    >
+    </app-form-input>
+
+    <app-form-input
+      [type]="'text'"
+      [label]="'Zip Code'"
+      [maxLenght]="'5'"
+      [hint]="'5'"
+      [readonly]="true"
+      [control]="control('address').controls.zipCode"
+      [errorMessage]="validationMessages.zipCode"
+    >
+    </app-form-input>
+  </div>
+
+  <div class="mb-4">
+    <button
+      type="button"
+      mat-button
+      class="text-gray-700!"
+      (click)="addFavorite()"
+    >
+      <mat-icon>add</mat-icon>
+      Add Favorite
+    </button>
+  </div>
+
+  @for (favorite of favorites.controls; track $index) {
+    <div class="flex gap-4">
+      <app-form-input
+        [type]="'text'"
+        [label]="'Favorite ' + ($index + 1)"
+        [control]="favorite"
+        [errorMessage]="validationMessages.favorites"
+        class="flex-1"
+      >
+      </app-form-input>
+
+      <button
+        type="button"
+        mat-icon-button
+        class="text-red-500! hover:bg-red-100!"
+        (click)="removeFavorite($index)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  }
+
+  <div class="mt-4 flex gap-4">
+    <button type="submit" mat-raised-button>Submit</button>
+    <button
+      type="button"
+      mat-button
+      class="text-red-500! hover:bg-red-100!"
+      (click)="onReset()"
+    >
+      Reset
+    </button>
+  </div>
+</form>
