@@ -1,0 +1,15 @@
+<h3>{{ label() }}</h3>
+<mat-radio-group class="w-full" [formControl]="control()">
+  @for (option of options(); track $index) {
+    <mat-radio-button [value]="option.value">
+      {{ option.label }}
+    </mat-radio-button>
+  }
+</mat-radio-group>
+
+<mat-error class="text-xs mt-[-8px]">
+  <app-error-field
+    [control]="control()"
+    [errorMessage]="errorMessage()"
+  ></app-error-field>
+</mat-error>

@@ -1,0 +1,22 @@
+<!-- Header -->
+<section class="mb-4">
+  <app-header></app-header>
+</section>
+
+<main class="max-w-2xl mx-auto">
+  <mat-card class="space-y-4">
+    <!-- Card Header -->
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+    </mat-card-header>
+
+    <div class="mb-4">
+      <mat-divider></mat-divider>
+    </div>
+
+    <!-- Card Content -->
+    <mat-card-content>
+      <router-outlet></router-outlet>
+    </mat-card-content>
+  </mat-card>
+</main>

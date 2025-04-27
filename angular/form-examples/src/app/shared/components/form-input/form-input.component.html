@@ -1,0 +1,38 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ label() }}</mat-label>
+  <input
+    matInput
+    [type]="hidePassword() ? type() : 'text'"
+    [placeholder]="placeholder()"
+    [minlength]="minLenght()"
+    [maxlength]="maxLenght()"
+    [readonly]="readonly()"
+    [formControl]="control()"
+  />
+
+  @if (type() === "password") {
+    <button
+      type="button"
+      mat-icon-button
+      matSuffix
+      (click)="togglePasswordVisibility()"
+    >
+      <mat-icon>
+        {{ hidePassword() ? "visibility_off" : "visibility" }}
+      </mat-icon>
+    </button>
+  }
+
+  @if (hint()) {
+    <mat-hint align="end">
+      {{ control().value?.length }} / {{ hint() }}
+    </mat-hint>
+  }
+
+  <mat-error>
+    <app-error-field
+      [control]="control()"
+      [errorMessage]="errorMessage()"
+    ></app-error-field>
+  </mat-error>
+</mat-form-field>

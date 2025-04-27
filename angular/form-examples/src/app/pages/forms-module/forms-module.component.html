@@ -1,0 +1,310 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        name="email"
+        [(ngModel)]="formModel.email"
+        required
+        email
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email.getError('required')"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="email.getError('email')">Email is not valid</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input
+        matInput
+        type="text"
+        name="phone"
+        [(ngModel)]="formModel.phone"
+        required
+        minlength="10"
+        pattern="^[0-9]*$"
+        #phone="ngModel"
+      />
+
+      <mat-error *ngIf="phone.getError('required')"
+        >Phone is required</mat-error
+      >
+      <mat-error *ngIf="phone.getError('pattern')">
+        Phone must contain only numbers
+      </mat-error>
+      <mat-error *ngIf="phone.getError('minlength')">
+        Phone must be 10 digits
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="w-full">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      name="password"
+      [(ngModel)]="formModel.password"
+      required
+      [pattern]="patternPassword"
+      #password="ngModel"
+    />
+
+    <mat-error *ngIf="password.getError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="password.getError('pattern')">
+      Password must contain at least one uppercase letter, one lowercase letter,
+      one number, and one special
+    </mat-error>
+  </mat-form-field>
+
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        type="text"
+        name="firstName"
+        [(ngModel)]="formModel.fullName!.firstName"
+        required
+        #firstName="ngModel"
+      />
+
+      <mat-error *ngIf="firstName.getError('required')">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        type="text"
+        name="lastName"
+        [(ngModel)]="formModel.fullName!.lastName"
+        required
+        #lastName="ngModel"
+      />
+
+      <mat-error *ngIf="lastName.getError('required')">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field>
+      <mat-label>Birth Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        name="birthDate"
+        [(ngModel)]="formModel.birthDate"
+        required
+        #birthDate="ngModel"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-error *ngIf="birthDate.getError('required')">
+        Birth Date is required
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <h3>Gender</h3>
+      <mat-radio-group
+        name="gender"
+        [(ngModel)]="formModel.gender"
+        required
+        #gender="ngModel"
+      >
+        <mat-radio-button
+          *ngFor="let option of genderOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-error
+        class="text-xs mt-[-8px]"
+        *ngIf="gender.getError('required') && gender.control?.touched"
+      >
+        Gender is required
+      </mat-error>
+    </div>
+  </div>
+
+  <mat-form-field class="w-full">
+    <mat-label>Address Line 1</mat-label>
+    <input
+      matInput
+      type="text"
+      name="addressLine1"
+      [(ngModel)]="formModel.address!.addressLine1"
+      required
+      #addressLine1="ngModel"
+    />
+
+    <mat-error *ngIf="addressLine1.getError('required')">
+      Address Line 1 is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Address Line 2</mat-label>
+    <textarea
+      matInput
+      name="addressLine2"
+      rows="3"
+      [(ngModel)]="formModel.address!.addressLine2"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Area</mat-label>
+    <input
+      matInput
+      name="area"
+      [(ngModel)]="area"
+      (ngModelChange)="onAreaChange($event)"
+      [matAutocomplete]="auto"
+    />
+    <mat-icon matSuffix>arrow_drop_down</mat-icon>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let area of filteredAreas" [value]="area">
+        {{ area }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field>
+      <mat-label>Sub District</mat-label>
+      <input
+        matInput
+        type="text"
+        name="subDistrict"
+        [(ngModel)]="formModel.address!.subDistrict"
+        required
+        readonly
+        #subDistrict="ngModel"
+      />
+
+      <mat-error *ngIf="subDistrict.getError('required')">
+        Sub District is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>District</mat-label>
+      <input
+        matInput
+        type="text"
+        name="district"
+        [(ngModel)]="formModel.address!.district"
+        required
+        readonly
+        #district="ngModel"
+      />
+
+      <mat-error *ngIf="district.getError('required')">
+        District is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <input
+        matInput
+        type="text"
+        name="province"
+        [(ngModel)]="formModel.address!.province"
+        required
+        readonly
+        #province="ngModel"
+      />
+
+      <mat-error *ngIf="province.getError('required')">
+        Province is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Zip Code</mat-label>
+      <input
+        matInput
+        type="text"
+        name="zipCode"
+        [(ngModel)]="formModel.address!.zipCode"
+        required
+        minlength="5"
+        pattern="^[0-9]*$"
+        readonly
+        #zipCode="ngModel"
+      />
+
+      <mat-error *ngIf="zipCode.getError('required')"
+        >Zip Code is required</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="mb-4">
+    <button
+      type="button"
+      mat-button
+      class="text-gray-700!"
+      (click)="addFavorite()"
+    >
+      <mat-icon>add</mat-icon>
+      Add Favorite
+    </button>
+  </div>
+
+  <div
+    *ngFor="let favorite of formModel.favorites; let i = index"
+    class="flex gap-4"
+  >
+    <mat-form-field class="flex-1">
+      <mat-label>Favorite {{ i + 1 }}</mat-label>
+      <input
+        matInput
+        [name]="'favorite' + i"
+        [(ngModel)]="formModel.favorites![i]"
+      />
+    </mat-form-field>
+
+    <button
+      mat-icon-button
+      (click)="removeFavorite(i)"
+      class="text-red-500! hover:bg-red-100!"
+      type="button"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div class="mt-4 flex gap-4">
+    <button type="submit" mat-raised-button>Submit</button>
+    <button
+      type="button"
+      mat-button
+      class="text-red-500! hover:bg-red-100!"
+      (click)="onReset(userForm)"
+    >
+      Reset
+    </button>
+  </div>
+</form>
