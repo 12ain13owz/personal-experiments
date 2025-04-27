@@ -1,59 +1,89 @@
-# FormExamples
+# Form Examples
+
+This directory contains example implementations of forms in Angular, demonstrating the differences and use cases between `FormsModule` (Template-driven forms) and `ReactiveFormsModule` (Reactive forms).
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+
+## Examples Included
+
+This directory contains implementations showing:
+
+- Basic form setup for both approaches
+- Form validation techniques
+- Dynamic form controls
+- Form submission handling
+- Custom validations
+- Form state management
 
 ## Development server
 
 To start a local development server, run:
 
 ```bash
+# Navigate to the form-examples directory
+cd angular/form-examples
+
+# Install dependencies (if not already done)
+npm install
+
+# Serve the application
 ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+### Using Docker
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+This project includes a Dockerfile for containerized deployment and testing.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+#### Building the Docker image
 
 ```bash
-ng generate --help
+# Navigate to the form-examples directory
+cd angular/form-examples
+
+# Build the Docker image
+docker build -t angular-form-examples .
 ```
 
-## Building
-
-To build the project run:
+#### Running the Docker container
 
 ```bash
-ng build
+# Run the container
+docker run -d -p 4200:80 --name angular-forms angular-form-examples
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The application will be accessible at `http://localhost:4200`.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+#### Stopping the container
 
 ```bash
-ng test
+docker stop angular-forms
+docker rm angular-forms
 ```
 
-## Running end-to-end tests
+## Docker Configuration
 
-For end-to-end (e2e) testing, run:
+The included Dockerfile:
 
-```bash
-ng e2e
-```
+- Uses a multi-stage build process
+- Stage 1: Builds the Angular application using Node.js
+- Stage 2: Serves the built application using Nginx
+- Includes custom Nginx configuration for proper Angular routing
+- Exposes port 80 for the web server
+- Maps to port 4200 when running the container
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Nginx Configuration
 
-## Additional Resources
+The Dockerfile includes a custom Nginx configuration that:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Properly handles Angular's client-side routing with HTML5 pushState
+- Configures the `try_files` directive to redirect all routes to index.html
+- Ensures that deep-linking works correctly in the Angular application
+- Sets up appropriate error page handling
+
+This configuration is essential for Single Page Applications (SPAs) like Angular to work correctly when deployed with Nginx.
+
+## Resources
+
+- [Angular Official Documentation on Forms](https://angular.dev/guide/forms)
