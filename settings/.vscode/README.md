@@ -189,8 +189,8 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   Sets the tab width to 2 spaces.
   _Extension_: Prettier.
 
-- **`prettier.printWidth`: 80**
-  Sets the maximum line length to 80 characters.
+- **`prettier.printWidth`: 100**
+  Sets the maximum line length to 100 characters.
   _Extension_: Prettier.
 
 - **`prettier.singleQuote`: false**
@@ -221,7 +221,7 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
 {
   "prettier.useTabs": false,
   "prettier Sliding tabWidth": 2,
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 100,
   "prettier.singleQuote": false,
   "prettier.trailingComma": "es5",
   "prettier.semi": false,
@@ -496,11 +496,7 @@ Customizes syntax highlighting for the GitHub Dark Default theme.
           "settings": { "foreground": "#f75992" }
         },
         {
-          "scope": [
-            "support.type.primitive",
-            "support.type.builtin",
-            "support.class"
-          ],
+          "scope": ["support.type.primitive", "support.type.builtin", "support.class"],
           "settings": { "foreground": "#ffa657" }
         },
         {
@@ -557,8 +553,8 @@ Settings tailored for specific programming languages.
 - **`editor.formatOnType`: true**
   Formats Dart code while typing.
   _Extension_: Dart.
-- **`editor.rulers`: [80]**
-  Adds a vertical ruler at 80 characters.
+- **`editor.rulers`: [100]**
+  Adds a vertical ruler at 100 characters.
   _Extension_: Built-in.
 - **`editor.selectionHighlight`: false**
   Disables selection highlighting.
@@ -581,7 +577,7 @@ Settings tailored for specific programming languages.
   "[dart]": {
     "editor.defaultFormatter": "Dart-Code.dart-code",
     "editor.formatOnType": true,
-    "editor.rulers": [80],
+    "editor.rulers": [100],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
