@@ -25,7 +25,7 @@ The provided `.prettierrc` contains the following settings:
 {
   "useTabs": false,
   "tabWidth": 2,
-  "printWidth": 80,
+  "printWidth": 100,
   "singleQuote": false,
   "trailingComma": "es5",
   "semi": false,
@@ -113,10 +113,7 @@ module.exports = tseslint.config(
   },
   {
     files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {},
   }
 )
