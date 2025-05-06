@@ -43,7 +43,7 @@
   // --- Prettier: Code Formatting ---
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
-  "prettier.printWidth": 100,
+  "prettier.printWidth": 80,
   "prettier.singleQuote": false,
   "prettier.trailingComma": "es5",
   "prettier.semi": false,
@@ -128,7 +128,11 @@
           "settings": { "foreground": "#f75992" }
         },
         {
-          "scope": ["support.type.primitive", "support.type.builtin", "support.class"],
+          "scope": [
+            "support.type.primitive",
+            "support.type.builtin",
+            "support.class"
+          ],
           "settings": { "foreground": "#ffa657" }
         },
         {
@@ -160,7 +164,7 @@
   "[dart]": {
     "editor.defaultFormatter": "Dart-Code.dart-code",
     "editor.formatOnType": true,
-    "editor.rulers": [100],
+    "editor.rulers": [80],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
