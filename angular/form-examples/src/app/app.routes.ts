@@ -7,5 +7,5 @@ export const routes: Routes = [
   { path: "", redirectTo: "forms-module", pathMatch: "full" },
   { path: "forms-module", component: FormsModuleComponent },
   { path: "reactive-forms", component: ReactiveFormsComponent },
-  { path: "**", redirectTo: "forms-modules", pathMatch: "full" },
+  { path: "**", redirectTo: "forms-module", pathMatch: "full" },
 ]
