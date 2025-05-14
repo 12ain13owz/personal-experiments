@@ -193,8 +193,8 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   Sets the maximum line length to 80 characters.
   _Extension_: Prettier.
 
-- **`prettier.singleQuote`: false**
-  Uses double quotes instead of single quotes.
+- **`prettier.singleQuote`: true**
+  Uses single quotes instead of double quotes.
   _Extension_: Prettier.
 
 - **`prettier.trailingComma`: "es5"**
@@ -220,9 +220,9 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
 ```json
 {
   "prettier.useTabs": false,
-  "prettier Sliding tabWidth": 2,
+  "prettier.tabWidth": 2,
   "prettier.printWidth": 80,
-  "prettier.singleQuote": false,
+  "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.semi": false,
   "prettier.bracketSpacing": true,
@@ -425,6 +425,10 @@ Settings for the overall VSCode theme and icons.
   Uses Angular/NgRx-specific icons for relevant files.
   _Extension_: Material Icon Theme.
 
+- **`material-icon-theme.folders.associations`**:
+  Customizes folder icons for specific folder names:
+  _Extension_: Material Icon Theme.
+
 - **`breadcrumbs.enabled`: false**
   Disables breadcrumbs to reduce UI clutter.
   _Extension_: Built-in.
@@ -440,6 +444,12 @@ Settings for the overall VSCode theme and icons.
   "material-icon-theme.folders.theme": "specific",
   "material-icon-theme.folders.color": "#90a4ae",
   "material-icon-theme.activeIconPack": "angular_ngrx",
+  "material-icon-theme.folders.associations": {
+    "feature": "trigger",
+    "features": "trigger",
+    "form": "class",
+    "forms": "class"
+  },
   "breadcrumbs.enabled": false,
   "workbench.colorCustomizations": {
     "[GitHub Dark Default]": {
@@ -470,6 +480,10 @@ Customizes syntax highlighting for the GitHub Dark Default theme.
   "editor.tokenColorCustomizations": {
     "[GitHub Dark Default]": {
       "textMateRules": [
+        {
+          "scope": "constant.numeric.decimal.ts",
+          "settings": { "foreground": "#93f9ce" }
+        },
         {
           "scope": "text.html.derivative",
           "settings": { "foreground": "#f1f1cc" }
@@ -647,6 +661,10 @@ Additional settings for various VSCode features.
   Enables telemetry for Red Hat extensions (e.g., YAML).
   _Extension_: YAML (`redhat.vscode-yaml`).
 
+- **`codeium.enableCodeLens`: false**
+  Disables Codeium's CodeLens feature, preventing inline information or commands from appearing in the editor.
+  _Extension_: Codeium
+
 ```json
 {
   "security.workspace.trust.untrustedFiles": "open",
@@ -655,7 +673,8 @@ Additional settings for various VSCode features.
   "turboConsoleLog.insertEnclosingFunction": false,
   "turboConsoleLog.logMessagePrefix": "",
   "turboConsoleLog.delimiterInsideMessage": "",
-  "redhat.telemetry.enabled": true
+  "redhat.telemetry.enabled": true,
+  "codeium.enableCodeLens": false
 }
 ```
 

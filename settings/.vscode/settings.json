@@ -44,7 +44,7 @@
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.printWidth": 80,
-  "prettier.singleQuote": false,
+  "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.semi": false,
   "prettier.bracketSpacing": true,
@@ -89,6 +89,12 @@
   "material-icon-theme.folders.theme": "specific",
   "material-icon-theme.folders.color": "#90a4ae",
   "material-icon-theme.activeIconPack": "angular_ngrx",
+  "material-icon-theme.folders.associations": {
+    "feature": "trigger",
+    "features": "trigger",
+    "form": "class",
+    "forms": "class"
+  },
   "breadcrumbs.enabled": false,
   "workbench.colorCustomizations": {
     "[GitHub Dark Default]": {
@@ -102,6 +108,10 @@
   "editor.tokenColorCustomizations": {
     "[GitHub Dark Default]": {
       "textMateRules": [
+        {
+          "scope": "constant.numeric.decimal.ts",
+          "settings": { "foreground": "#93f9ce" }
+        },
         {
           "scope": "text.html.derivative",
           "settings": { "foreground": "#f1f1cc" }
@@ -184,5 +194,6 @@
   "turboConsoleLog.insertEnclosingFunction": false,
   "turboConsoleLog.logMessagePrefix": "",
   "turboConsoleLog.delimiterInsideMessage": "",
-  "redhat.telemetry.enabled": true
+  "redhat.telemetry.enabled": true,
+  "codeium.enableCodeLens": false
 }
