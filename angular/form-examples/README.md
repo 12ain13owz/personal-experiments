@@ -4,7 +4,7 @@ This directory contains example implementations of forms in Angular, demonstrati
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
-## Examples Included
+## Features
 
 This directory contains implementations showing:
 
