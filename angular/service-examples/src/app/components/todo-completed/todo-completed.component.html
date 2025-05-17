@@ -1,0 +1,43 @@
+<div class="flex justify-center">
+  <div class="max-w-2xl w-full px-4 py-6 border border-gray-200 rounded-lg">
+    <div class="flex flex-col gap-2 mb-6">
+      <div class="flex justify-between">
+        <h1 class="text-white text-2xl font-bold">Todo Completed</h1>
+        <div class="flex gap-2">
+          <button
+            type="button"
+            (click)="incrementCounter()"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+          >
+            Increment Counter
+          </button>
+
+          <span class="text-white text-2xl font-bold">
+            Counter: {{ counterService.getCount() }}
+          </span>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 w-full"></div>
+    </div>
+
+    <ul class="space-y-2">
+      @for (todo of todos; track $index) {
+        <li
+          class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded text-gray-500 dark:text-gray-400"
+        >
+          <span class="flex-1">{{ todo.title }}</span>
+          <button
+            (click)="toggleTodo(todo.id)"
+            class="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+            >Undo</button
+          >
+        </li>
+      } @empty {
+        <li class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded">
+          <span class="flex-1 text-gray-400">No todos completed</span>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

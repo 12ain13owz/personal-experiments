@@ -1,0 +1,19 @@
+<nav class="bg-gray-900 p-4 text-gray-300 border-b border-gray-700">
+  <div class="max-w-2xl mx-auto flex justify-center gap-8">
+    <a
+      routerLink="/todos"
+      routerLinkActive="text-white border-b-2 border-blue-500"
+      [routerLinkActiveOptions]="{ exact: false }"
+      class="hover:text-white transition-colors duration-200 py-1 px-2"
+      >All Todo
+    </a>
+    <a
+      routerLink="/completed"
+      routerLinkActive="text-white border-b-2 border-blue-500"
+      [routerLinkActiveOptions]="{ exact: false }"
+      class="hover:text-white transition-colors duration-200 py-1 px-2"
+    >
+      Completed Todos
+    </a>
+  </div>
+</nav>
