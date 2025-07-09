@@ -43,7 +43,7 @@
   // --- Prettier: Code Formatting ---
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 100,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.semi": false,
@@ -93,7 +93,11 @@
     "feature": "trigger",
     "features": "trigger",
     "form": "class",
-    "forms": "class"
+    "forms": "class",
+    "path": "context",
+    "paths": "context",
+    "tag": "flow",
+    "tags": "flow"
   },
   "breadcrumbs.enabled": false,
   "workbench.colorCustomizations": {
@@ -138,11 +142,11 @@
           "settings": { "foreground": "#f75992" }
         },
         {
-          "scope": [
-            "support.type.primitive",
-            "support.type.builtin",
-            "support.class"
-          ],
+          "scope": ["variable.object.property.ts"],
+          "settings": { "foreground": "#E6EDF3" }
+        },
+        {
+          "scope": ["support.type.primitive", "support.type.builtin", "support.class"],
           "settings": { "foreground": "#ffa657" }
         },
         {
@@ -195,5 +199,6 @@
   "turboConsoleLog.logMessagePrefix": "",
   "turboConsoleLog.delimiterInsideMessage": "",
   "redhat.telemetry.enabled": true,
-  "codeium.enableCodeLens": false
+  "codeium.enableCodeLens": false,
+  "docker.extension.enableComposeLanguageServer": false
 }
