@@ -1,0 +1,55 @@
+<div [class]="containerClasses">
+  <!-- Header -->
+  <header [class]="headerClasses">
+    <h1 class="text-xl font-bold text-gray-800">Employee Management</h1>
+    <button [class]="buttonClasses" (click)="goBack()">Back to Launcher</button>
+  </header>
+
+  <!-- Filter Section -->
+  <section [class]="filterClasses">
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input
+        [class]="inputClasses"
+        type="text"
+        placeholder="Search by name..."
+        [(ngModel)]="searchQuery"
+        (input)="filterEmployees()"
+      />
+      <select [class]="selectClasses" [(ngModel)]="selectedStatus" (change)="filterEmployees()">
+        <option value="">All Statuses</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+      <button [class]="clearButtonClasses" (click)="clearFilters()">Clear</button>
+    </div>
+  </section>
+
+  <!-- Table Section -->
+  <section [class]="tableContainerClasses">
+    <table [class]="tableClasses">
+      <thead>
+        <tr>
+          <th [class]="thClasses">ID</th>
+          <th [class]="thClasses">Name</th>
+          <th [class]="thClasses">Email</th>
+          <th [class]="thClasses">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (employee of filteredEmployees; track $index) {
+          <tr class="hover:bg-gray-50">
+            <td [class]="tdClasses">{{ employee.id }}</td>
+            <td [class]="tdClasses">{{ employee.name }}</td>
+            <td [class]="tdClasses">{{ employee.email }}</td>
+            <td [class]="tdClasses">{{ employee.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <!-- Mock Pagination -->
+    <div class="mt-4 flex justify-between">
+      <button [class]="buttonClasses" disabled>Previous</button>
+      <button [class]="buttonClasses">Next</button>
+    </div>
+  </section>
+</div>

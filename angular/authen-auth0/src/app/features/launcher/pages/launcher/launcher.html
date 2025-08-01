@@ -1,0 +1,28 @@
+<div [class]="containerClasses">
+  <!-- Header -->
+  <header [class]="headerClasses">
+    <h1 class="text-xl font-bold text-gray-800">Launcher</h1>
+    <div>
+      @if (user) {
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
+            <img [src]="user.picture" alt="Profile" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-lg font-medium text-gray-800">{{ user.email }}</p>
+          <button [class]="logoutButtonClasses" (click)="logout()">Logout</button>
+        </div>
+      }
+    </div>
+  </header>
+
+  <!-- Feature Navigation -->
+  <section [class]="featureContainerClasses">
+    @for (feature of features; track $index) {
+      <div [class]="cardClasses">
+        <img [class]="logoClasses" [src]="feature.logo" [alt]="feature.name" />
+        <h3 class="text-base font-semibold text-gray-800 mb-2">{{ feature.name }}</h3>
+        <button [class]="buttonClasses" (click)="navigateTo(feature.path)"> Go to {{ feature.name }} </button>
+      </div>
+    }
+  </section>
+</div>
