@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built assets from the build stage
-COPY --from=build /app/dist/form-examples/browser /usr/share/nginx/html
+COPY --from=build /app/dist/[project-name]/browser /usr/share/nginx/html
 
 # Copy custom nginx config
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
