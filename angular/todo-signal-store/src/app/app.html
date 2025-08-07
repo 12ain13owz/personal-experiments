@@ -1,0 +1,79 @@
+<div class="h-screen flex justify-center items-center bg-[#020617]">
+  <main
+    class="max-w-md w-full border border-slate-700 bg-slate-900 rounded-xl p-4 flex flex-col gap-y-4"
+  >
+    <div class="mb-4 flex justify-between items-center">
+      <h1 class="text-2xl font-medium text-slate-100">Task Manager</h1>
+      <span class="text-slate-100 font-medium">
+        ({{ store.completeTodos().length }} / {{ store.todos().length }})
+      </span>
+    </div>
+    <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="flex gap-3">
+      <input
+        type="text"
+        class="border border-slate-700 bg-slate-800 text-slate-100 rounded-md p-2 w-full placeholder:text-slate-400"
+        placeholder="new task..."
+        formControlName="title"
+      />
+      <button
+        type="submit"
+        class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded"
+        [disabled]="todoForm.invalid || todoForm.controls.title.value === ''"
+      >
+        Add
+      </button>
+    </form>
+
+    <ul>
+      @for (task of store.filterTodos(); track $index) {
+        <li class="mb-2 flex gap-4 items-center">
+          <input
+            type="checkbox"
+            [checked]="task.completed"
+            class="w-5 h-5 cursor-pointer accent-blue-500 rounded border-2 border-slate-600 bg-[#0F172B] focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#0F172B] transition-all duration-200 hover:border-blue-400"
+            (change)="toggleTodo(task.id)"
+          />
+          <span [class]="task.completed ? 'line-through text-slate-500' : 'text-slate-200'">
+            {{ task.title }}
+          </span>
+        </li>
+      }
+    </ul>
+
+    <div class="flex gap-2 mb-4">
+      <button
+        (click)="store.changeFilter('all')"
+        [class]="
+          store.filter() === 'all'
+            ? 'border-blue-500 text-blue-400 bg-blue-500/10'
+            : 'border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+        "
+        class="px-4 py-2 border-2 rounded-lg font-medium transition-all duration-200"
+      >
+        All
+      </button>
+      <button
+        (click)="store.changeFilter('active')"
+        [class]="
+          store.filter() === 'active'
+            ? 'border-orange-500 text-orange-400 bg-orange-500/10'
+            : 'border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+        "
+        class="px-4 py-2 border-2 rounded-lg font-medium transition-all duration-200"
+      >
+        Active
+      </button>
+      <button
+        (click)="store.changeFilter('completed')"
+        [class]="
+          store.filter() === 'completed'
+            ? 'border-green-500 text-green-400 bg-green-500/10'
+            : 'border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+        "
+        class="px-4 py-2 border-2 rounded-lg font-medium transition-all duration-200"
+      >
+        Completed
+      </button>
+    </div>
+  </main>
+</div>
