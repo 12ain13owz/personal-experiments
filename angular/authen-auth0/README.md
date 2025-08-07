@@ -86,7 +86,7 @@ This project includes a Dockerfile for containerized deployment and testing.
 #### Building the Docker image
 
 ```bash
-# Navigate to the form-examples directory
+# Navigate to the authen-auth0 directory
 cd angular/authen-auth0
 
 # Build the Docker image
