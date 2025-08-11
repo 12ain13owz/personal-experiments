@@ -11,9 +11,10 @@ import { TodoStore } from './store/todo.store'
 })
 export class App {
   private fb = inject(FormBuilder)
+  private store = inject(TodoStore)
 
   todoForm = this.fb.group({ title: [''] })
-  store = inject(TodoStore)
+  todoStore = this.store
 
   addTodo() {
     const title = this.todoForm.controls.title
