@@ -14,7 +14,7 @@ Sample configuration files for Angular projects in `personal-experiments/angular
 3. Install dependencies:
 
 ```bash
-npm install -D angular-eslint eslint eslint-plugin-import prettier typescript-eslint @eslint/js
+npm install -D angular-eslint eslint eslint-plugin-import prettier prettier-plugin-tailwindcss typescript-eslint @eslint/js
 ```
 
 ## Prettier Configuration
@@ -31,7 +31,9 @@ The provided `.prettierrc` contains the following settings:
   "semi": false,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "strict",
+  "htmlWhitespaceSensitivity": "css",
+  "proseWrap": "preserve",
+  "plugins": ["prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.html",
