@@ -49,7 +49,8 @@
   "prettier.semi": false,
   "prettier.bracketSpacing": true,
   "prettier.arrowParens": "always",
-  "prettier.htmlWhitespaceSensitivity": "strict",
+  "prettier.htmlWhitespaceSensitivity": "css",
+  "prettier.proseWrap": "preserve",
 
   // --- HTML: Formatting ---
   "html.format.wrapAttributes": "force-aligned",

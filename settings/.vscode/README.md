@@ -213,8 +213,12 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   Includes parentheses around arrow function parameters.
   _Extension_: Prettier.
 
-- **`prettier.htmlWhitespaceSensitivity`: "strict"**
-  Enforces strict whitespace handling in HTML.
+- **`prettier.htmlWhitespaceSensitivity`: "css"**
+  Enforces css whitespace handling in HTML.
+  _Extension_: Prettier.
+
+- **`prettier.proseWrap`: "preserve"**
+  Preserves line breaks in prose, like Markdown, as in the original text.
   _Extension_: Prettier.
 
 ```json
@@ -227,7 +231,8 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   "prettier.semi": false,
   "prettier.bracketSpacing": true,
   "prettier.arrowParens": "always",
-  "prettier.htmlWhitespaceSensitivity": "strict"
+  "prettier.htmlWhitespaceSensitivity": "css",
+  "prettier.proseWrap": "preserve"
 }
 ```
 
@@ -510,11 +515,7 @@ Customizes syntax highlighting for the GitHub Dark Default theme.
           "settings": { "foreground": "#f75992" }
         },
         {
-          "scope": [
-            "support.type.primitive",
-            "support.type.builtin",
-            "support.class"
-          ],
+          "scope": ["support.type.primitive", "support.type.builtin", "support.class"],
           "settings": { "foreground": "#ffa657" }
         },
         {
