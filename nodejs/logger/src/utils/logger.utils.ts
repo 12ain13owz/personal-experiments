@@ -11,7 +11,7 @@ import {
   WinstonLogLevel,
 } from '@/const/logger.const'
 
-// ? ==================== File Transport Utilities ====================
+// # ==================== File Transport Utilities ====================
 
 /**
  * Creates log directory structure if it doesn't exist
@@ -45,7 +45,7 @@ const getLogFilePath = (level?: string): string => {
   return join(logDir, filename)
 }
 
-// ? ==================== Color Utilities ====================
+// # ==================== Color Utilities ====================
 
 /**
  * Wraps text with ANSI color codes for terminal output
@@ -64,7 +64,7 @@ const formatLogLevel = (level: string): string => {
   return coloredLevel
 }
 
-// ? ==================== Value Formatting ====================
+// # ==================== Value Formatting ====================
 
 /**
  * Formats primitive values (string, number, boolean, null, undefined, function)
@@ -167,7 +167,7 @@ const formatValue = (value: unknown, indentLevel: number = 0): string => {
   return formatPrimitiveValue(value)
 }
 
-// ? ==================== Message Formatting ====================
+// # ==================== Message Formatting ====================
 
 /**
  * Formats log messages with special handling for arrays of multiple values
@@ -193,7 +193,7 @@ const formatLogMessage = (message: unknown): string => {
   return formatValue(message, 0)
 }
 
-// ? ==================== Winston Custom Format ====================
+// # ==================== Winston Custom Format ====================
 
 /**
  * Custom Winston format that combines timestamp, level, and formatted message
@@ -223,7 +223,7 @@ const fileLogFormat = format.printf((info) => {
   return `${timestamp} ${level} ${message}`
 })
 
-// * ==================== Logger Instance ====================
+// # ==================== Logger Instance ====================
 
 /**
  * Logger configuration constants
