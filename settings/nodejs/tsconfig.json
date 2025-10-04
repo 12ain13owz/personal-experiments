@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    // Target และ Module settings
+    "target": "ES2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+
+    // Path และ Root settings
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "baseUrl": "src",
+    "paths": { "@/*": ["*"] },
+
+    // Strict Type-Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "alwaysStrict": true,
+
+    // Additional Checks
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Module Resolution
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "checkJs": false,
+
+    // Emit Settings
+    "declaration": false,
+    "sourceMap": false,
+    "removeComments": true,
+
+    // Advanced Settings
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    // Experimental Features
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "dist"]
+}
