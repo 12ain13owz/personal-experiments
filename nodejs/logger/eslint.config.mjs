@@ -1,16 +1,13 @@
 /** @type {import('eslint').Linter.Config[]} */
 import pluginJs from '@eslint/js'
 import importPlugin from 'eslint-plugin-import'
-import noUnsanitized from 'eslint-plugin-no-unsanitized'
 import security from 'eslint-plugin-security'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default [
   // Ignore files and directories
-  {
-    ignores: ['node_modules/**', 'dist/**/*', 'scripts/**', 'eslint.config.mjs'],
-  },
+  { ignores: ['node_modules/**', 'dist/**/*', 'scripts/**', 'eslint.config.mjs'] },
 
   // Target files to lint
   { files: ['src/**/*.{js,mjs,cjs,ts}'] },
@@ -37,11 +34,7 @@ export default [
 
   // Custom rules and plugins
   {
-    plugins: {
-      import: importPlugin,
-      security,
-      'no-unsanitized': noUnsanitized,
-    },
+    plugins: { import: importPlugin, security },
     rules: {
       // General JavaScript rules
       'no-async-promise-executor': 'error', // Prevent unsafe Promise executor functions
@@ -60,7 +53,6 @@ export default [
       '@typescript-eslint/require-await': 'off', // Allow async functions without await (common in Express middleware)
 
       // Security and sanitization
-      'no-unsanitized/method': 'warn', // Warn on unsanitized DOM methods
       'security/detect-object-injection': 'warn', // Warn on potential object injection vulnerabilities
 
       // Import ordering (aligned with tsconfig.json paths: @/*)

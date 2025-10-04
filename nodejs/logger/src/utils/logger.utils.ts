@@ -48,7 +48,7 @@ const getLogFilePath = (level?: string): string => {
 // # ==================== Color Utilities ====================
 
 /**
- * Wraps text with ANSI color codes for terminal output
+ * Applys text with ANSI color codes for terminal output
  */
 const applyColor = (text: unknown, color: AnsiColors): string => {
   return `\x1b[${color}m${String(text)}\x1b[0m`
@@ -60,8 +60,8 @@ const applyColor = (text: unknown, color: AnsiColors): string => {
 const formatLogLevel = (level: string): string => {
   const normalizedLevel = level.toUpperCase()
   const colorCode = LOG_LEVEL_COLORS[normalizedLevel as LogLevelDisplay] ?? AnsiColors.OTHER
-  const coloredLevel = applyColor(normalizedLevel.padEnd(5), colorCode)
-  return coloredLevel
+  const colorLevel = applyColor(normalizedLevel.padEnd(5), colorCode)
+  return colorLevel
 }
 
 // # ==================== Value Formatting ====================
