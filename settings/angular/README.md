@@ -14,7 +14,7 @@ Sample configuration files for Angular projects in `personal-experiments/angular
 3. Install dependencies:
 
 ```bash
-npm install -D angular-eslint eslint eslint-plugin-import prettier prettier-plugin-tailwindcss typescript-eslint @eslint/js
+npm install -D eslint typescript-eslint angular-eslint eslint-plugin-import prettier prettier-plugin-tailwindcss @eslint/js
 ```
 
 ## Prettier Configuration
@@ -25,12 +25,13 @@ The provided `.prettierrc` contains the following settings:
 {
   "useTabs": false,
   "tabWidth": 2,
-  "printWidth": 80,
+  "printWidth": 100,
   "singleQuote": true,
   "trailingComma": "es5",
   "semi": false,
   "bracketSpacing": true,
   "arrowParens": "always",
+  "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "proseWrap": "preserve",
   "plugins": ["prettier-plugin-tailwindcss"],
@@ -115,22 +116,13 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {},
   }
 )
 ```
 
-## Best Practices
-
-- Run linting and formatting checks before committing changes
-- Consider adding pre-commit hooks to automate formatting
-- Keep configurations consistent across related projects
-
-## For More Information
+## Information
 
 - [Prettier Documentation](https://prettier.io/docs/en/options.html)
 - [ESLint Angular Plugin](https://github.com/angular-eslint/angular-eslint)
