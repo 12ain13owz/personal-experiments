@@ -7,7 +7,10 @@
   "semi": false,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "strict",
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "proseWrap": "preserve",
+  "plugins": ["prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.html",
