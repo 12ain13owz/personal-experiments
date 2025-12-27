@@ -27,7 +27,6 @@ The `docker-compose.yml` defines the following services:
   - Credentials: `user_postgres`/`pass_postgres`
   - Volume: `postgres-data`
 - **Redis** (`redis`):
-
   - Image: `redis:latest`
   - Port: `6379`
 
@@ -88,6 +87,57 @@ db.bat <action> <service1> [service2 ...]
 - Run `db.bat` in a Windows Command Prompt.
 - Ensure Docker is running before executing commands.
 - If no services are specified, the script will show usage instructions.
+
+## DATABASE_URL Examples (for Local Development)
+
+Since all services expose their default ports to `localhost`, you can connect directly from your backend application (e.g., Node.js with Prisma, Express, NestJS, etc.) running on your Windows machine (not inside a container).
+Replace `[DATABASE_NAME]` with any name you like (e.g., `dev_db`, `myapp`, `test`). Databases will be created automatically on first connection (except MySQL, which requires manual creation).
+
+### PostgreSQL
+
+```
+DATABASE_URL="postgresql://user_postgres:pass_postgres@localhost:5432/[DATABASE_NAME]?schema=public"
+```
+
+- Recommended for Prisma.
+
+### MySQL
+
+```
+DATABASE_URL="mysql://user_mysql:pass_mysql@localhost:3306/[DATABASE_NAME]?charset=utf8mb4&parseTime=true"
+```
+
+- MySQL requires you to create the database first (e.g., via MySQL Workbench or command line: mysql -u root -proot -e "CREATE DATABASE [DATABASE_NAME];").
+
+### MongoDB
+
+```
+DATABASE_URL="mongodb://user_mongo:pass_mongo@localhost:27017/[DATABASE_NAME]?authSource=admin"
+```
+
+- Database is created automatically on first insert.
+
+### Redis
+
+```
+REDIS_URL="redis://localhost:6379"
+```
+
+### Example .env file snippet
+
+```
+# PostgreSQL
+DATABASE_URL="postgresql://user_postgres:pass_postgres@localhost:5432/dev_db?schema=public"
+
+# MySQL
+DATABASE_URL="mysql://user_mysql:pass_mysql@localhost:3306/dev_db?charset=utf8mb4&parseTime=true"
+
+# MongoDB
+MONGODB_URI="mongodb://user_mongo:pass_mongo@localhost:27017/dev_db?authSource=admin"
+
+# Redis
+REDIS_URL="redis://localhost:6379"
+```
 
 ## Volumes
 
