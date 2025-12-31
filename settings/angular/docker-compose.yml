@@ -5,6 +5,6 @@ services:
       dockerfile: Dockerfile
     image: project-name-img
     container_name: project-name-app
+    restart: unless-stopped
     ports:
       - "4200:80"
-    restart: unless-stopped
