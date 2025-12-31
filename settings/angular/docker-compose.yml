@@ -1,0 +1,10 @@
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: project-name-img
+    container_name: project-name-app
+    ports:
+      - "4200:80"
+    restart: unless-stopped
