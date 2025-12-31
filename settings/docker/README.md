@@ -12,7 +12,7 @@ This project provides a Docker Compose setup to run multiple database services (
 The `docker-compose.yml` defines the following services:
 
 - **MySQL** (`mysql`):
-  - Image: `mysql`
+  - Image: `mysql:latest`
   - Port: `3306`
   - Credentials: `user_mysql`/`pass_mysql`, Root: `root`
   - Volume: `mysql-data`
