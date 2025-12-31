@@ -1,0 +1,10 @@
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: project-name-img
+    container_name: project-name-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"

@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     // Target และ Module settings
-    "target": "ES2022",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2023",
+    "ignoreDeprecations": "6.0",
 
     // Path และ Root settings
     "rootDir": "./src",
