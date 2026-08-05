@@ -5,16 +5,19 @@ Sample configuration files for Nodejs projects in `personal-experiments/nodejs`.
 ## Recommended Configs
 
 - **Prettier** (`.prettierrc`): Settings for code formatting
-- **ESLint** (`eslint.config.js`): Settings for linting TypeScript
+- **ESLint** (`eslint.config.mjs`): Settings for linting TypeScript
+- **TypeScript** (`tsconfig.json`): Base compiler options for a plain Node.js/TS project (no bundler)
+- **.gitignore** / **.dockerignore**: Standard ignores (`node_modules`, `dist`, `logs`, `.env*`)
+- **Docker** (`Dockerfile`, `docker-compose.yml`): Multi-stage-style build (`npm run build` at image build time, `npm start` at runtime)
 
 ## Usage
 
-1. Copy the `.prettierrc` and `eslint.config.js` files to your project folder (e.g., `nodejs/logger`)
+1. Copy the files you need to your project folder (e.g., `nodejs/logger`)
 2. Customize according to your project requirements
 3. Install dependencies:
 
 ```bash
-npm install -D @eslint/js @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-plugin-import eslint-plugin-security rimraf globals prettier ts-node tsc-alias tsx typescript typescript-eslint
+npm install -D @eslint/js @types/node eslint eslint-config-prettier eslint-plugin-import-x eslint-plugin-n eslint-plugin-security eslint-plugin-unused-imports globals prettier rimraf tsc-alias tsx typescript typescript-eslint
 ```
 
 ## Prettier Configuration
@@ -38,75 +41,15 @@ The provided `.prettierrc` contains the following settings:
 
 ## ESLint Configuration
 
-The provided `eslint.config.js` contains the following settings:
+`eslint.config.mjs` uses flat config with type-aware TypeScript linting, plus a few focused plugins:
 
-```typescript
-/** @type {import('eslint').Linter.Config[]} */
-import pluginJs from '@eslint/js'
-import importPlugin from 'eslint-plugin-import'
-import security from 'eslint-plugin-security'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
+- `eslint-plugin-import-x` – import ordering (`@/*` alias grouped as internal)
+- `eslint-plugin-unused-imports` – auto-remove unused imports on `--fix`
+- `eslint-plugin-n` – catches deprecated/unsupported Node.js API usage
+- `eslint-plugin-security` – warns on common injection-prone patterns
+- `eslint-config-prettier` – disables ESLint rules that conflict with Prettier
 
-export default [
-  { ignores: ['node_modules/**', 'dist/**/*', 'scripts/**', 'eslint.config.mjs'] },
-  { files: ['src/**/*.{js,mjs,cjs,ts}'] },
-  {
-    languageOptions: {
-      globals: globals.node,
-      parser: tseslint.parser,
-      parserOptions: {
-        sourceType: 'module',
-        project: './tsconfig.json',
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
-
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-
-  {
-    plugins: { import: importPlugin, security },
-    rules: {
-      'no-async-promise-executor': 'error',
-      'no-throw-literal': 'error',
-      'no-eval': 'error',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
-      'no-process-env': 'warn',
-
-      complexity: ['warn', { max: 15 }],
-
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/require-await': 'off',
-      'security/detect-object-injection': 'warn',
-
-      'import/order': [
-        'error',
-        {
-          groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index']],
-          pathGroups: [
-            {
-              pattern: '@/**',
-              group: 'internal',
-              position: 'after',
-            },
-          ],
-          pathGroupsExcludedImportTypes: ['builtin'],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          'newlines-between': 'always',
-        },
-      ],
-    },
-  },
-]
-```
+Rules focus on safety and correctness (`no-floating-promises`, `eqeqeq`, `no-var`, `consistent-type-imports`, etc.) and stay generic — no project-specific architecture rules (e.g. feature-folder import boundaries) since this is meant as a plain starting point. See `eslint.config.mjs` for the full rule set.
 
 ## Script Package.json
 

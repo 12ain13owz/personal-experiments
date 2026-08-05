@@ -1,49 +1,35 @@
 {
   "compilerOptions": {
-    // Target และ Module settings
+    /* Output — emit Node-ready JS (no bundler in the pipeline) */
+    "target": "ES2022",
+    "lib": ["ES2022"],
     "module": "ESNext",
-    "moduleResolution": "node",
-    "target": "ES2023",
-    "ignoreDeprecations": "6.0",
+    "moduleResolution": "bundler",
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "removeComments": true,
 
-    // Path และ Root settings
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "baseUrl": "src",
-    "paths": { "@/*": ["*"] },
+    /* Module interop */
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
 
-    // Strict Type-Checking
+    /* Path alias — resolved relative to this file (baseUrl is deprecated in TS 6+) */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Type safety (strict already covers noImplicitAny / strictNullChecks / etc.) */
     "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "alwaysStrict": true,
-
-    // Additional Checks
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    // Module Resolution
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "allowJs": false,
-    "checkJs": false,
-
-    // Emit Settings
-    "declaration": false,
-    "sourceMap": false,
-    "removeComments": true,
-
-    // Advanced Settings
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-
-    // Experimental Features
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    /* Build performance */
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "dist"]
+  "exclude": ["node_modules", "dist"]
 }
