@@ -3,19 +3,24 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "prettier.prettier-vscode",
-  "editor.cursorBlinking": "smooth",
-  "editor.cursorStyle": "line",
-  "editor.cursorWidth": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  // --- Editor: Cursor ---
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 2,
 
   // --- Editor: Appearance ---
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "editor.fontWeight": "600",
+  "editor.fontWeight": "500",
   "editor.letterSpacing": 0,
   "editor.lineHeight": 22,
   "editor.renderWhitespace": "trailing",
@@ -26,35 +31,17 @@
   "editor.guides.bracketPairs": false,
 
   // --- Editor: Suggestions ---
-  "editor.suggest.snippetsPreventQuickSuggestions": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.snippetSuggestions": "inline",
-
-  // --- Linting & Validation ---
-  "eslint.format.enable": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html",
-    "json"
-  ],
-
-  // --- Prettier: Code Formatting ---
-  "prettier.useTabs": false,
-  "prettier.tabWidth": 2,
-  "prettier.printWidth": 100,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "prettier.semi": false,
-  "prettier.bracketSpacing": true,
-  "prettier.arrowParens": "always",
-  "prettier.endOfLine": "lf",
-  "prettier.htmlWhitespaceSensitivity": "css",
-  "prettier.proseWrap": "preserve",
-
-  // --- HTML: Formatting ---
-  "html.format.wrapAttributes": "force-aligned",
+  "editor.inlineSuggest.enabled": true,
+  "css.validate": false,
+  "scss.validate": false,
 
   // --- Terminal Settings ---
   "terminal.integrated.fontFamily": "Hack",
@@ -66,21 +53,11 @@
   "explorer.confirmDragAndDrop": false,
   "files.trimTrailingWhitespace": true,
 
-  // --- Debugging ---
-  "debug.openDebug": "openOnDebugBreak",
+  // --- Import Settings ---
+  "js/ts.updateImportsOnFileMove.enabled": "always",
 
   // --- Git Settings ---
-  "git.ignoreMissingGitWarning": true,
-  "git.openRepositoryInParentFolders": "never",
   "git.autofetch": true,
-
-  // --- Live Server Settings ---
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
-
-  // --- Import Settings ---
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "javascript.updateImportsOnFileMove.enabled": "always",
 
   // --- Emmet Settings ---
   "emmet.showSuggestionsAsSnippets": false,
@@ -97,7 +74,9 @@
     "path": "context",
     "paths": "context",
     "tag": "flow",
-    "tags": "flow"
+    "tags": "flow",
+    "card": "container",
+    "cards": "container"
   },
   "breadcrumbs.enabled": false,
   "workbench.colorCustomizations": {
@@ -146,7 +125,11 @@
           "settings": { "foreground": "#E6EDF3" }
         },
         {
-          "scope": ["support.type.primitive", "support.type.builtin", "support.class"],
+          "scope": [
+            "support.type.primitive",
+            "support.type.builtin",
+            "support.class"
+          ],
           "settings": { "foreground": "#ffa657" }
         },
         {
@@ -170,37 +153,6 @@
       "rules": {}
     }
   },
-
-  // --- Extension Settings ---
-  "hediet.vscode-drawio.resizeImages": null,
-
-  // --- Language Specific Settings ---
-  "[dart]": {
-    "editor.defaultFormatter": "Dart-Code.dart-code",
-    "editor.formatOnType": true,
-    "editor.rulers": [80],
-    "editor.selectionHighlight": false,
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "off",
-    "editor.wordBasedSuggestions": "off"
-  },
-  "[go]": {
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "golang.go"
-  },
-
-  // --- Miscellaneous ---
-  "security.workspace.trust.untrustedFiles": "open",
-  "http.proxyAuthorization": null,
-  "turboConsoleLog.insertEnclosingClass": false,
-  "turboConsoleLog.insertEnclosingFunction": false,
-  "turboConsoleLog.logMessagePrefix": "",
-  "turboConsoleLog.delimiterInsideMessage": "",
-  "redhat.telemetry.enabled": true,
-  "codeium.enableCodeLens": false,
-  "docker.extension.enableComposeLanguageServer": false,
 
   // --- Comments ---
   "better-comments.tags": [
@@ -259,20 +211,14 @@
       "italic": false
     }
   ],
-  "[dockercompose]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.autoIndent": "advanced",
-    "editor.quickSuggestions": {
-      "other": true,
-      "comments": false,
-      "strings": true
-    },
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+  "extensions.ignoreRecommendations": true,
+  "chat.viewSessions.orientation": "stacked",
+  "chat.disableAIFeatures": true,
+  "claudeCode.preferredLocation": "panel",
+  "codeium.enableConfig": {
+    "*": true,
+    "dotenv": true,
+    "markdown": true
   },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
+  "workbench.settings.applyToAllProfiles": []
 }

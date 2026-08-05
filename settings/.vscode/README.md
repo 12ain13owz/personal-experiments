@@ -1,6 +1,6 @@
 # VSCode Settings
 
-Personal Visual Studio Code configuration focused on **TypeScript / JavaScript / Angular / Dart / Go** development.
+Personal Visual Studio Code configuration focused on **TypeScript / JavaScript / Angular** development.
 
 This repository exists to **back up, reuse, and quickly apply** my preferred VSCode environment across machines.
 
@@ -21,10 +21,11 @@ This repository exists to **back up, reuse, and quickly apply** my preferred VSC
 
 - 2-space indentation
 - Format on save
-- Prettier as default formatter
+- Prettier (`esbenp.prettier-vscode`) as default formatter
+- Dedicated YAML formatter (`redhat.vscode-yaml`)
 - ESLint auto-fix on save (explicit)
-- Max line width: **100**
-- No semicolons, single quotes
+- Prettier/ESLint rules now come from each project's own config files (no longer duplicated in `settings.json`)
+- CSS/SCSS built-in validation disabled (handled by linters instead)
 
 ---
 
@@ -44,11 +45,9 @@ Optimized settings for:
 
 - **TypeScript / JavaScript**
 - **Angular**
-- **Dart**
-- **Go**
-- **Docker Compose / GitHub Actions (YAML)**
+- **YAML** (formatted via `redhat.vscode-yaml`)
 
-Each language uses its recommended formatter.
+> Dart, Go, and Docker Compose/GitHub Actions-specific overrides were removed to keep this config focused and low-maintenance; add them back locally if a project needs them.
 
 ---
 
@@ -57,7 +56,16 @@ Each language uses its recommended formatter.
 - Better Comments configured (`!`, `todo`, `?`, etc.)
 - Emmet suggestions reduced to avoid noise
 - Git auto-fetch enabled
-- GitLens AI enabled (VS Code model)
+- Quick suggestions tuned (inline suggestions on, string suggestions off)
+- Extension recommendation prompts disabled (`extensions.ignoreRecommendations`)
+
+---
+
+## 🤖 AI & Chat
+
+- Built-in VS Code chat AI features disabled (`chat.disableAIFeatures`)
+- Claude Code panel docked to the side panel (`claudeCode.preferredLocation`)
+- Codeium enabled for common file types, including `.env` and Markdown
 
 ---
 
