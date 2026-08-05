@@ -1,6 +1,13 @@
+# Dependencies
 node_modules/
-logs/
+
+# Build output
 dist/
+
+# Environment
 .env
 .env.*
 !.env.example
+
+# Logs
+logs/
