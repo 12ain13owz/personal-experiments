@@ -1,6 +1,6 @@
 # Database Services with Docker Compose
 
-This project provides a Docker Compose setup to run multiple database services (MySQL, MongoDB, PostgreSQL, and Redis) and a batch script (`db.bat`) to manage them. You can configure your Windows environment to run `db` commands from any directory.
+This project provides a Docker Compose setup to run multiple database/storage services (MySQL, MongoDB, PostgreSQL, Redis, and MinIO) and a batch script (`db.bat`) to manage them. You can configure your Windows environment to run `db` commands from any directory.
 
 ## Prerequisites
 
@@ -29,10 +29,17 @@ The `docker-compose.yml` defines the following services:
 - **Redis** (`redis`):
   - Image: `redis:latest`
   - Port: `6379`
+- **MinIO** (`minio`):
+  - Image: `minio/minio:latest`
+  - Ports: `9000` (S3 API), `9001` (web console)
+  - Credentials: `user_minio`/`pass_minio`
+  - Volume: `minio-data`
+
+All services use `restart: unless-stopped` — they come back automatically after a Docker/host restart or a crash, but stay down once you explicitly `db down` them.
 
 ## Configure Windows Environment for Global `db` Command
 
-To run `db up` or `db down` from any directory, add the directory containing `db.bat` to your Windows PATH:
+`db.bat` locates `docker-compose.yml` next to itself automatically (via `%~dp0`), so no extra environment variable is needed — just add its folder to PATH:
 
 1. **Find the full path** of your project directory (e.g., `C:\Users\YourName\Projects\db-service`).
 2. **Open Environment Variables**:
@@ -44,13 +51,9 @@ To run `db up` or `db down` from any directory, add the directory containing `db
 4. **Verify the setup**:
    - Open a new Command Prompt and type `db`. You should see usage instructions:
      ```
-     Usage: db.bat [services...]
+     Usage: db.bat action [services...]
      Example: db.bat up mongo postgres
      ```
-5. **Set DBService environment variable** (optional, if `db.bat` references `%DBService%`):
-   - In the **Environment Variables** window, under **User variables**, click **New**.
-   - Set **Variable name** to `DBService` and **Variable value** to the directory containing `docker-compose.yml` (e.g., `C:\Users\YourName\Projects\db-service`).
-   - Click **OK** to save.
 
 **Note**: Restart your Command Prompt after making changes to apply the new PATH.
 
@@ -65,7 +68,7 @@ db.bat <action> <service1> [service2 ...]
 ```
 
 - **action**: `up` (start services in detached mode) or `down` (stop and remove services).
-- **services**: `mysql`, `mongo`, `postgres`, `redis` (one or more).
+- **services**: `mysql`, `mongo`, `postgres`, `redis`, `minio` (one or more).
 
 ### Examples
 
@@ -123,6 +126,18 @@ DATABASE_URL="mongodb://user_mongo:pass_mongo@localhost:27017/[DATABASE_NAME]?au
 REDIS_URL="redis://localhost:6379"
 ```
 
+### MinIO
+
+```
+MINIO_ENDPOINT="localhost"
+MINIO_PORT=9000
+MINIO_ACCESS_KEY="user_minio"
+MINIO_SECRET_KEY="pass_minio"
+```
+
+- Web console: [http://localhost:9001](http://localhost:9001)
+- S3-compatible SDKs (e.g. `@aws-sdk/client-s3`, `minio` npm package) can connect using the endpoint above with `useSSL: false`.
+
 ### Example .env file snippet
 
 ```
@@ -143,15 +158,19 @@ REDIS_URL="redis://localhost:6379"
 
 Persistent data is stored in the following Docker volumes:
 
-- `mysql-data`
-- `mongo-data`
-- `mongo-data`
-- `postgres-data`
+- `db-mysql-data`
+- `db-mongo-data`
+- `db-mongo-config`
+- `db-postgres-data`
+- `db-minio-data`
+
+(Redis has no volume — data is in-memory only.)
 
 ## Troubleshooting
 
 - **Error: "Please specify the services"**: Ensure you provide at least one service name.
 - **Docker Compose failed**: Check if Docker is running and the service names are correct.
-- **Port conflicts**: Ensure ports `3306`, `27017`, `5432`, and `6379` are free.
+- **Port conflicts**: Ensure ports `3306`, `27017`, `5432`, `6379`, `9000`, and `9001` are free.
 - **Command `db` not found**: Verify that the directory containing `db.bat` is in your PATH and restart Command Prompt.
-- **Error accessing `docker-compose.yml`**: Ensure the `DBService` environment variable is set correctly.
+- **Compose file not found**: `db.bat` looks for `docker-compose.yml` next to itself — make sure you haven't moved `db.bat` out of this folder.
+- **Docker CLI was not found in PATH**: `db.bat` looks for `docker-compose` first, then falls back to `docker compose` (v2 plugin) — install/update Docker Desktop if neither is found.
